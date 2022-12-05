@@ -43,14 +43,22 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'money-rails', '~>1.12'
+gem 'rubocop', require: false
+gem 'tailwindcss-rails', '~> 2.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "factory_bot_rails"
+  gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "main"
+  gem "pry-rails"
+  gem "rspec-rails", "~> 6.0.0"
 end
 
 group :development do
