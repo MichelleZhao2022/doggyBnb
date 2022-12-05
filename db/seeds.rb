@@ -5,9 +5,10 @@
     name: Faker::Lorem.word,
     description: Faker::Lorem.paragraph,
     city: Faker::Address.city,
-    country: 'New Zealand'
+    country: 'New Zealand',
+    price_cents: Money.from_amount((50..200).to_a.sample)
   )
 
   accommodation.images.attach(io: File.open(Rails.root.join('db', 'sample', 'images', "accommodation_#{i + 1}.png")),
-  filename: accommodation.name)
+                              filename: accommodation.name)
 end

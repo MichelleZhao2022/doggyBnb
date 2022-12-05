@@ -7,4 +7,8 @@ class Accommodation < ApplicationRecord
   validates :country, presence: true
 
   has_many_attached :images
+
+  def default_image
+    images.first
+  end
 end
