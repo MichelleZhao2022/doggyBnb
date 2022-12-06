@@ -53,6 +53,7 @@ gem 'sassc-rails'
 gem 'money-rails', '~>1.12'
 gem 'rubocop', require: false
 gem 'tailwindcss-rails', '~> 2.0'
+gem 'vite_rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
