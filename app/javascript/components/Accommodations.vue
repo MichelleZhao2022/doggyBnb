@@ -6,7 +6,7 @@
         <img :src="accommodation.image" /> 
       </div>
       <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{{ accommodation.city }}, {{ accommodation.country }}</p>
-      <p class="pointer-events-none block text-sm font-medium text-gray-500"><span class="text-black">{{ accommodation.price_cents }}</span> per day</p>
+      <p class="pointer-events-none block text-sm font-medium"><span class="text-black">{{ accommodation.price_cents }}</span> per day</p>
     </li>
   </ul>
   </div>
