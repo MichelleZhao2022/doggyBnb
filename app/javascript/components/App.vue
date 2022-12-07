@@ -18,8 +18,6 @@ export default {
       .then((response) => {
         state.accommodations = response.data;
         console.log('response.data',response.data)
-        console.log('response.data[0].default_image',response.data[0])
-        console.log('state.accommodations',state.accommodations)
       })
     const { accommodations } = toRefs(state);
     return { accommodations };

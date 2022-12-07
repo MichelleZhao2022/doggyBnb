@@ -2,16 +2,18 @@
 
 class PagesController < ApplicationController
   def home
-    @accommodations = Accommodation.all
+    @accommodations = Accommodation.all.map do |accommodation|
+      {
+        city: accommodation.city,
+        country: accommodation.country,
+        price_cents: accommodation.price_cents,
+        image: url_for(accommodation.default_image)
+      }
+    end
 
     respond_to do |format|
-      format.xml
       format.html
       format.json { render json: @accommodations }
-
-      # format.json do
-      #   render json: @accommodations.to_json, status: :ok
-      # end
     end
   rescue ActiveRecord::RecordNotFound => e
     respond_to do |format|
