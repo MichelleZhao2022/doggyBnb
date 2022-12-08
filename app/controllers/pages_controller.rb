@@ -2,19 +2,17 @@
 
 class PagesController < ApplicationController
   def home
-    @accommodations = Accommodation.all.map do |accommodation|
-      {
-        id: accommodation.id,
-        city: accommodation.city,
-        country: accommodation.country,
-        price_cents: accommodation.price_cents,
-        image: url_for(accommodation.default_image)
-      }
-    end
+    @accommodations = Accommodation.all
 
     respond_to do |format|
       format.html
-      format.json { render json: @accommodations }
+      format.json do
+        render json: @accommodations.map { |accommodation|
+                       accommodation.as_json.merge({ images: accommodation.images.map do |img|
+                                                               { image: url_for(img) }
+                                                             end })
+                     }
+      end
     end
   rescue ActiveRecord::RecordNotFound => e
     respond_to do |format|
