@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 import FullReload from 'vite-plugin-full-reload'
 import vue from '@vitejs/plugin-vue' 
+import path from 'path'
 
 export default defineConfig({
   plugins: [
@@ -9,4 +10,9 @@ export default defineConfig({
     FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
     vue()
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './app')
+    }
+  }
 })

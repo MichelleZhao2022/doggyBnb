@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @accommodations = Accommodation.all.map do |accommodation|
       {
+        id: accommodation.id,
         city: accommodation.city,
         country: accommodation.country,
         price_cents: accommodation.price_cents,
