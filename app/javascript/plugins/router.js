@@ -1,15 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Accommodations from '../components/Accommodations.vue'
-import AccommodationDetail from '../components/AccommodationDetail.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import AccommodationIndex from "../views/accommodation/index.vue";
+import AccommodationShow from "../views/accommodation/show.vue";
 
 const routes = [
-  {path: '', name: 'home', component: Accommodations },
-  {path: '/detail', name: 'detail', component: AccommodationDetail },
-]
+  { path: "/pages/index", name: "pages_index_path", component: AccommodationIndex },
+  { path: "/pages/show/:id", name: "pages_show_path", component: AccommodationShow },
+];
 
 const router = createRouter({
   routes,
-  history: createWebHistory()
-})
+  history: createWebHistory(),
+});
 
-export default router
+export default router;

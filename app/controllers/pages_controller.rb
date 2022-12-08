@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  def home
+  def index
     @accommodations = Accommodation.all
 
     respond_to do |format|
@@ -20,5 +20,9 @@ class PagesController < ApplicationController
         render json: { error: e.message }.to_json, status: 404
       end
     end
+  end
+
+  def show
+    @accommodations = Accommodation.find(params[:id])
   end
 end
