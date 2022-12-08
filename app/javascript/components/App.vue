@@ -11,6 +11,7 @@
 import axios from "axios";
 import { reactive, toRefs } from "vue";
 import Accommodations from './Accommodations.vue';
+import { RouterView, RouterLink } from 'vue-router';
 
 export default {
   components: {
@@ -19,10 +20,10 @@ export default {
   setup() {
     const state = reactive({accommodations: []})
     axios
-      .get("/accommodations")
+      .get("/pages/home.json")
       .then((response) => {
         state.accommodations = response.data;
-        console.log('response',response)
+        console.log('response.data',response.data)
       })
     const { accommodations } = toRefs(state);
     return { accommodations };
