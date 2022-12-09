@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'home#index'
 
-  resources :accommodations, only: :show
+  namespace :api do
+    resources :accommodations
+  end
 end

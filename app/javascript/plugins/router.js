@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AccommodationIndex from "../views/accommodation/index.vue";
-import AccommodationShow from "../views/accommodation/show.vue";
+import AccommodationIndex from "../views/api/accommodation/index.vue";
+import AccommodationShow from "../views/api/accommodation/show.vue";
 
 const routes = [
-  { path: "/pages/index", name: "pages_index_path", component: AccommodationIndex },
-  { path: "/pages/show/:id", name: "pages_show_path", component: AccommodationShow },
+  { path: "/api/accommodations", name: "api_accommodations_path", component: AccommodationIndex },
+  { path: "/api/accommodations/:id", name: "api_accommodation_path", component: AccommodationShow },
 ];
 
 const router = createRouter({

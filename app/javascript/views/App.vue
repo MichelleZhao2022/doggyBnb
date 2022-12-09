@@ -10,20 +10,24 @@
 <script>
 import axios from "axios";
 import { reactive, toRefs } from "vue";
-import AccommodationIndex from "./accommodation/index.vue";
+import AccommodationIndex from "./api/accommodation/index.vue";
 
 export default {
   components: {
-    AccommodationIndex
+    AccommodationIndex,
   },
   setup() {
-    const state = reactive({accommodations: []})
+    const state = reactive({ accommodations: [] });
     axios
-      .get("/pages/index.json")
+      .get("/api/accommodations.json", {
+        header: {
+          ACCEPT: "application/json",
+        },
+      })
       .then((response) => {
         state.accommodations = response.data;
-        console.log('response.data',response.data)
-      })
+        console.log("response.data", response.data);
+      });
     const { accommodations } = toRefs(state);
     return { accommodations };
   },

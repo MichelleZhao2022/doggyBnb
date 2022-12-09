@@ -5,8 +5,7 @@
           <div class="group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
             <img :src="accommodation.images[0].image" /> 
           </div>
-          <!-- <router-link :to="{ path: '/pages/show/'+ accommodation.id }" class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{{ accommodation.name }}</router-link> -->
-          <router-link :to="{ name: 'pages_show_path', params: {id: accommodation.id}}">{{ accommodation.name }}</router-link>
+          <router-link :to="{ name: 'api_accommodation_path', params: {id: accommodation.id} }">{{ accommodation.name }}</router-link>
           <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{{ accommodation.city }}, {{ accommodation.country }}</p>
           <p class="pointer-events-none block text-sm font-medium"><span class="text-black">{{ accommodation.price_cents }}</span> per day</p>
         </li>
