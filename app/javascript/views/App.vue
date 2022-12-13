@@ -4,17 +4,19 @@
 
     <!-- <router-link :to="{name: 'home'}">Home</router-link>
     <router-link :to="{name: 'detail'}">Detail</router-link> -->
-    <!-- <router-view></router-view> -->
+    <router-view></router-view>
   </div>
 </template>
 <script>
 import axios from "axios";
 import { reactive, toRefs } from "vue";
 import AccommodationIndex from "./api/accommodation/index.vue";
+import AccommodationShow from './api/accommodation/show.vue';
 
 export default {
   components: {
     AccommodationIndex,
+    AccommodationShow,
   },
   setup() {
     const state = reactive({ accommodations: [] });
