@@ -26,6 +26,7 @@ export default {
         // console.log("response.data", response.data);
       });
     const { accommodations } = toRefs(state);
+    console.log("accommodations", accommodations);
     return { accommodations };
   },
 };

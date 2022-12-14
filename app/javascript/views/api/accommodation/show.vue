@@ -1,27 +1,27 @@
 <template lang="">
   <div>
-    <span>{{ accommodation.city }}</span><br />
-    <span>{{ accommodation.country }}</span><br />
-    <span>in detail page</span><br />
-
+    <span>{{ accommodation.city }}</span
+    ><br />
+    <span>{{ accommodation.country }}</span
+    ><br />
     <carousel :items-to-show="1.5">
-    <slide v-for="slide in 10" :key="slide">
-      {{ slide }}
-    </slide>
+      <slide v-for="slide in accommodation.images" :key="slide">
+        <img :src="slide.image" />
+      </slide>
 
-    <template #addons>
-      <navigation />
-      <pagination />
-    </template>
-  </carousel>
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
   </div>
 </template>
 <script>
 import axios from "axios";
 import { reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
 export default {
   components: {
@@ -44,7 +44,7 @@ export default {
         // console.log("response.data", response.data);
       });
     const { accommodation } = toRefs(state);
-    console.log('accommodation',accommodation)
+    console.log("accommodation", accommodation);
     return { accommodation };
   },
 };
