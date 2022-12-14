@@ -8,6 +8,7 @@
           <router-link :to="{ name: 'api_accommodation_path', params: {id: accommodation.id} }">{{ accommodation.name }}</router-link>
           <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{{ accommodation.city }}, {{ accommodation.country }}</p>
           <p class="pointer-events-none block text-sm font-medium"><span class="text-black">{{ accommodation.price_cents }}</span> per day</p>
+          <h1 class="text-3xl font-bold underline font-semibold text-4xl">{{ accommodation.name }}</h1>
         </li>
       </ul>
     </div>
