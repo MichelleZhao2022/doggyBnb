@@ -6,9 +6,11 @@
     description: Faker::Lorem.paragraph,
     city: Faker::Address.city,
     country: 'New Zealand',
-    price_cents: Money.from_amount((50..200).to_a.sample)
+    price_cents: Money.from_amount((1..100).to_a.sample)
   )
 
-  accommodation.images.attach(io: File.open(Rails.root.join('db', 'sample', 'images', "accommodation_#{i + 1}.png")),
+  3.times do |x|
+  accommodation.images.attach(io: File.open(Rails.root.join('db', 'sample', 'images', "accommodation_#{i + 1 + x}.png")),
                               filename: accommodation.name)
+  end
 end

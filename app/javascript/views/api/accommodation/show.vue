@@ -1,15 +1,15 @@
 <template lang="">
-  <div class="pt-6">
+  <div class="container mx-auto">
     <div
-      class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-2"
+      class="mx-auto max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-2"
     >
-    <h1 class="text-3xl font-bold underline font-semibold text-4xl">{{ accommodation.name }}</h1>
+    <h1 class="font-bold text-4xl text-blue-500">{{ accommodation.name }}</h1>
     </div>
     <div
       class="mx-auto flex max-w-2xl flex justify-between items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
     >
         <span>
-          <svg
+          <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -20,20 +20,19 @@
               d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
               clip-rule="evenodd"
             />
-          </svg>
+          </svg> -->
           {{ accommodation.average_rating }} {{ accommodation.reviews_count }}
         </span>
-        <span>{{ accommodation.city }} {{ accommodation.country }} </span>
+        <span>{{ accommodation.city }}, {{ accommodation.country }} </span>
       
     </div>
 
     <!-- Image gallery -->
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:gap-x-8 lg:px-8">
       <div class="aspect-auto overflow-hidden rounded-lg lg:block">
-        <carousel :items-to-show="1.5">
-          <slide v-for="slide in 10" :key="slide">
-            <!-- <img :src="slide" /> -->
-            {{ slide }}
+        <carousel :items-to-show="1">
+          <slide v-for="slide in accommodation.images" :key="slide">
+            <img :src="slide.image" />
           </slide>
 
           <template #addons>
