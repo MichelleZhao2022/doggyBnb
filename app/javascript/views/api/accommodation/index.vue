@@ -14,8 +14,24 @@
     </div>
   </template>
   <script>
+  import axios from "axios";
+  import { reactive, toRefs } from "vue";
   export default {
-    props:['accommodations']
+    setup() {
+    const state = reactive({ accommodations: [] });
+    axios
+      .get("/api/accommodations.json", {
+        header: {
+          ACCEPT: "application/json",
+        },
+      })
+      .then((response) => {
+        state.accommodations = response.data;
+        // console.log("response.data", response.data);
+      });
+    const { accommodations } = toRefs(state);
+    return { accommodations };
+  },
   }
   </script>
   <style lang="">

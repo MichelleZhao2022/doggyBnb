@@ -31,8 +31,9 @@
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:gap-x-8 lg:px-8">
       <div class="aspect-auto overflow-hidden rounded-lg lg:block">
         <carousel :items-to-show="1.5">
-          <slide v-for="slide in accommodation.images" :key="slide">
-            <img :src="slide.image" />
+          <slide v-for="slide in 10" :key="slide">
+            <!-- <img :src="slide" /> -->
+            {{ slide }}
           </slide>
 
           <template #addons>
