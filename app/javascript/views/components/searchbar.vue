@@ -16,21 +16,59 @@
           type="keyword"
           name="keyword"
           id="keyword"
+          v-model="keyword"
           class="block w-full rounded-none rounded-l-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           placeholder="Auckland"
         />
       </div>
-      <button
+      <!-- <button
         type="button"
+        @click="Seach"
+        class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+      >
+        <span>Search</span>
+      </button> -->
+
+      <router-link :to="{ name: 'api_search_index_path'}">
+        <button
+        type="button"
+        @click="Seach"
         class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
       >
         <span>Search</span>
       </button>
+      </router-link>
     </div>
   </div>
 </template>
 <script>
-export default {};
+import axios from "axios";
+import { ref, reactive, toRefs } from "vue";
+export default {
+  setup() {
+    const state = reactive({ accommodation: {} });
+    const keyword = ref("")
+    console.log('keyword', keyword)
+    console.log('keyword', keyword.value)
+    
+    function Seach(){
+      console.log('search clicked', keyword.value)
+      axios
+      .get("/api/search/:" + keyword.value, {
+        header: {
+          ACCEPT: "application/json",
+        },
+      })
+      .then((response) => {
+        state.accommodation = response.data;
+        // console.log("response.data", response.data);
+      });
+    }
+    const { accommodation } = toRefs(state);
+    console.log("accommodation", accommodation);
+    return { accommodation, Seach };
+  },
+};
 </script>
 <style lang="">
 </style>

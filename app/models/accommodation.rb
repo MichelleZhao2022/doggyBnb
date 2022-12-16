@@ -8,6 +8,8 @@ class Accommodation < ApplicationRecord
 
   has_many_attached :images
 
+  scope :city, ->(city) { where("lower(city) like ?", "%#{city.downcase}")}
+
   def default_image
     images.first
   end

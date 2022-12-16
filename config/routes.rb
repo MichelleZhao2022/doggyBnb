@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :accommodations
+    resources :search, only: :index
   end
 end
