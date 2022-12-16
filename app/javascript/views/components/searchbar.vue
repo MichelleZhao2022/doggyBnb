@@ -29,7 +29,7 @@
         <span>Search</span>
       </button> -->
 
-      <router-link :to="{ name: 'api_search_index_path'}">
+      <router-link :to="{ name: 'api_search_index_path', params: {keyword: keyword} }" >
         <button
         type="button"
         @click="Seach"
@@ -54,7 +54,7 @@ export default {
     function Seach(){
       console.log('search clicked', keyword.value)
       axios
-      .get("/api/search/:" + keyword.value, {
+      .get("/api/search" + keyword.value, {
         header: {
           ACCEPT: "application/json",
         },
