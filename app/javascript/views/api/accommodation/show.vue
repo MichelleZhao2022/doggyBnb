@@ -1,67 +1,111 @@
 <template lang="">
-  <div class="container mx-auto">
-    <div
-      class="mx-auto max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-2"
-    >
-    <h1 class="font-bold text-4xl">{{ accommodation.name }}</h1>
-    </div>
-    <div
-      class="mx-auto flex max-w-2xl flex justify-between items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
-    >
-        <span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="w-4 h-4 inline-block"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          {{ accommodation.average_rating }} {{ accommodation.reviews_count }}
-        </span>
-        <span>{{ accommodation.city }}, {{ accommodation.country }} </span>
-      
-    </div>
+<div class="bg-white">
+    <div class="pt-6">
 
-    <!-- Image gallery -->
-    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:gap-x-8 lg:px-8">
-      <div class="aspect-auto overflow-hidden rounded-lg lg:block">
-        <carousel :items-to-show="1">
-          <slide v-for="slide in accommodation.images" :key="slide">
-            <img :src="slide.image" />
-          </slide>
+      <!-- Image gallery -->
+      <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:gap-x-8 lg:px-8">
+        <div class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
+          <carousel :items-to-show="1" class="h-full w-full object-cover object-center">
+            <slide v-for="slide in accommodation.images" :key="slide">
+              <img :src="slide.image" />
+            </slide>
 
-          <template #addons>
-            <navigation />
-            <pagination />
-          </template>
-        </carousel>
+            <template #addons>
+              <navigation />
+              <pagination />
+            </template>
+          </carousel>
+        </div>
+      </div>
+
+      <!-- Product info -->
+      <div class="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
+        <div class="lg:col-span-2 lg:border-gray-200 lg:pr-8">
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ accommodation.name }}</h1>
+        </div>
+
+        <!-- Options -->
+        <div class="mt-4 lg:row-span-3 lg:mt-0">
+          <h2 class="sr-only">Product information</h2>
+          <p class="text-3xl tracking-tight text-gray-900">$ {{ accommodation.price_cents }} day</p>
+
+          <!-- Reviews -->
+          <div class="mt-6">
+            <h3 class="sr-only">Reviews</h3>
+            <div class="flex items-center">
+              <div class="flex items-center">
+                <!-- <StarIcon v-for="rating in [0, 1, 2, 3, 4]" :key="rating" :class="[reviews.average > rating ? 'text-gray-900' : 'text-gray-200', 'h-5 w-5 flex-shrink-0']" aria-hidden="true" /> -->
+              </div>
+              <p class="sr-only">{{ reviews.average }} out of 5 stars</p>
+              <a :href="reviews.href" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">{{ reviews.totalCount }} reviews</a>
+            </div>
+          </div>
+
+          <form class="mt-10 lg:border-y">
+            <div class="mt-8">
+              <div class="flow-root">
+                <ul role="list" class="-my-6 divide-y divide-gray-200">
+                  <li class="flex py-6">
+                    <div class="ml-4 flex flex-1 flex-col">
+                      <div class="flex flex-1 items-end justify-between text-sm">
+                        <div class="lg:border-y rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
+                          <label for="name" class="block text-xs font-medium text-gray-900">Check in</label>
+                          <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Jane Smith" />
+                        </div>
+                        <div class="lg:border-y rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
+                          <label for="name" class="block text-xs font-medium text-gray-900">Check out</label>
+                          <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Jane Smith" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                   <li class="flex py-6">
+                    <div class="ml-4 flex flex-1 flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                          <h3>
+                            <a href="#">{{ accommodation.name }}</a>
+                          </h3>
+                          <p class="ml-4">${{ accommodation.price_cents }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="flex py-6">
+                    <div class="ml-4 flex flex-1 flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                          <h3>
+                            <a href="#">{{ accommodation.name }}</a>
+                          </h3>
+                          <p class="ml-4">${{ accommodation.price_cents }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Reserve</button>
+          </form>
+        </div>
+
+        <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
+          <!-- Description -->
+          <div>
+            <h3 class="sr-only">Description</h3>
+
+            <div class="space-y-6">
+              <p class="text-base text-gray-900">{{ accommodation.description }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
-    <label for="name" class="block text-xs font-medium text-gray-900">Name</label>
-    <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Jane Smith" />
-      <v-date-picker color="red" is-range v-model="date" />
-    
-  </div>
-    <!-- <v-calendar /> -->
-   
-
-    <!-- <carousel :items-to-show="1.5">
-      <slide v-for="slide in accommodation.images" :key="slide">
-        <img :src="slide.image" />
-      </slide>
-
-      <template #addons>
-        <navigation />
-        <pagination />
-      </template>
-    </carousel> -->
   </div>
 </template>
 <script>
@@ -79,6 +123,7 @@ export default {
     Navigation,
   },
   setup() {
+    const reviews = { href: '#', average: 4, totalCount: 117 }
     const route = useRoute();
     const state = reactive({ accommodation: {} });
 
@@ -92,11 +137,10 @@ export default {
       })
       .then((response) => {
         state.accommodation = response.data;
-        // console.log("response.data", response.data);
+        console.log("detail page accommodation", response.data);
       });
     const { accommodation } = toRefs(state);
-    console.log("accommodation", accommodation);
-    return { accommodation, date };
+    return { accommodation, date, reviews };
   },
 };
 </script>

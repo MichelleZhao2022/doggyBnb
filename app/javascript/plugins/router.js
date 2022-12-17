@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AccommodationIndex from "../views/api/accommodation/index.vue";
-import AccommodationShow from "../views/api/accommodation/show_example.vue";
+import AccommodationShow from "../views/api/accommodation/show.vue";
 import Searchbar from "../views/components/Searchbar.vue";
 
 const routes = [
