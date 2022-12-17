@@ -1,0 +1,74 @@
+<template lang="">
+  <div class="mx-auto py-8">
+    <label for="keyword" class="block text-sm font-medium text-gray-700"
+      >Search Accommodation</label
+    >
+    <div class="mt-1 flex rounded-md shadow-sm">
+      <div class="relative flex flex-grow items-stretch focus-within:z-10">
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
+        </div>
+        <input
+          type="keyword"
+          name="keyword"
+          id="keyword"
+          v-model="keyword"
+          class="block w-full rounded-none rounded-l-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          placeholder="Auckland"
+        />
+      </div>
+      <!-- <button
+        type="button"
+        @click="Seach"
+        class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+      >
+        <span>Search</span>
+      </button> -->
+
+      <router-link :to="{ name: 'api_search_index_path', params: {keyword: keyword} }" >
+        <button
+        type="button"
+        @click="Seach"
+        class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+      >
+        <span>Search</span>
+      </button>
+      </router-link>
+    </div>
+  </div>
+</template>
+<script>
+import axios from "axios";
+import { ref, reactive, toRefs } from "vue";
+export default {
+  setup() {
+    const state = reactive({ accommodation: {} });
+    const keyword = ref("")
+    console.log('keyword', keyword)
+    console.log('keyword', keyword.value)
+    
+    function Seach(){
+      console.log('search clicked', keyword.value)
+      axios
+      .get("/api/search" + keyword.value, {
+        header: {
+          ACCEPT: "application/json",
+        },
+      })
+      .then((response) => {
+        state.accommodation = response.data;
+        // console.log("response.data", response.data);
+      });
+    }
+    const { accommodation } = toRefs(state);
+    console.log("accommodation", accommodation);
+    return { accommodation, Seach };
+  },
+};
+</script>
+<style lang="">
+</style>
