@@ -80,9 +80,7 @@
                     <div class="ml-4 flex flex-1 flex-col">
                       <div>
                         <div class="flex justify-between text-base font-medium text-gray-900">
-                          <h3>
-                            <a href="#">{{ accommodation.name }}</a>
-                          </h3>
+                          <p>{{ accommodation.name }}</p>
                           <p class="ml-4">${{ accommodation.price_cents }}</p>
                         </div>
                       </div>
@@ -93,9 +91,7 @@
                     <div class="ml-4 flex flex-1 flex-col">
                       <div>
                         <div class="flex justify-between text-base font-medium text-gray-900">
-                          <h3>
-                            <a href="#">{{ accommodation.name }}</a>
-                          </h3>
+                          <p>{{ accommodation.name }}</p>
                           <p class="ml-4">${{ accommodation.price_cents }}</p>
                         </div>
                       </div>

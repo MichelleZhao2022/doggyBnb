@@ -1,6 +1,5 @@
 <template lang="">
   <div class="container mx-auto py-8">
-    <SearchBar></SearchBar>
     <ul
       role="list"
       class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8"
@@ -36,27 +35,12 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-import { reactive, toRefs } from "vue";
-import SearchBar from "../../components/searchbar.vue";
 export default {
-  components: {
-    SearchBar,
-  },
-  setup() {
-    const state = reactive({ accommodations: [] });
-    axios
-      .get("/api/accommodations.json", {
-        header: {
-          ACCEPT: "application/json",
-        },
-      })
-      .then((response) => {
-        state.accommodations = response.data;
-        console.log("index page accommodations", response.data);
-      });
-    const { accommodations } = toRefs(state);
-    return { accommodations };
+  props: {
+    accommodations: {
+      type: Array,
+      default: []
+    },
   },
 };
 </script>
