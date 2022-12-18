@@ -7,6 +7,7 @@ class Accommodation < ApplicationRecord
   validates :country, presence: true
 
   has_many_attached :images
+  has_many :reservations, dependent: :destroy
 
   scope :city, ->(city) { where("lower(city) like ?", "%#{city.downcase}%")}
 
