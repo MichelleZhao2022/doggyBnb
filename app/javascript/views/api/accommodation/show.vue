@@ -46,15 +46,31 @@
               <div class="flow-root">
                 <ul role="list" class="-my-6 divide-y divide-gray-200">
                   <li class="flex py-6">
-                    <div class="ml-4 flex flex-1 flex-col">
+                    <div class="flex flex-1 flex-col">
                       <div class="flex flex-1 items-end justify-between text-sm">
                         <div class="lg:border-y rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
-                          <label for="name" class="block text-xs font-medium text-gray-900">Check in</label>
-                          <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Jane Smith" />
+                          <label for="checkin" class="block text-xs font-medium text-gray-900">Check in</label>
+                          <v-date-picker v-model="checkinDate">
+                            <template v-slot="{ inputValue, inputEvents }">
+                              <input
+                                class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
+                                :value="inputValue"
+                                v-on="inputEvents"
+                              />
+                            </template>
+                          </v-date-picker>
                         </div>
                         <div class="lg:border-y rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
                           <label for="name" class="block text-xs font-medium text-gray-900">Check out</label>
-                          <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Jane Smith" />
+                           <v-date-picker v-model="checkoutDate">
+                            <template v-slot="{ inputValue, inputEvents }">
+                              <input
+                                class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
+                                :value="inputValue"
+                                v-on="inputEvents"
+                              />
+                            </template>
+                          </v-date-picker>
                         </div>
                       </div>
                     </div>
@@ -127,8 +143,11 @@ export default {
     const route = useRoute();
     const state = reactive({ accommodation: {} });
 
-    const date = ref("")
-    console.log('picked date', date)
+    const checkinDate = ref(new Date())
+    const checkoutDate = ref(new Date())
+    console.log('checkinDate', checkinDate)
+    console.log('checkoutDate', checkoutDate)
+
     axios
       .get("/api/accommodations/" + route.params.id + ".json", {
         header: {
@@ -140,7 +159,7 @@ export default {
         console.log("detail page accommodation", response.data);
       });
     const { accommodation } = toRefs(state);
-    return { accommodation, date, reviews };
+    return { accommodation, checkinDate, checkoutDate, reviews };
   },
 };
 </script>
