@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :api do
-    resources :accommodations
-    # resources :search
+    resources :accommodations do
+      resources :reservations, only: :new, controller: "accommodations/reservations"
+    end
     # resources :search, only: :index
   end
+
+  
 end

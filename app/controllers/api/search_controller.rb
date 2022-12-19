@@ -13,7 +13,6 @@ module Api
                                                     { image: url_for(img) }
                                                   end })
           }
-          # redirect_to api_accommodations_path
         end
       end
     end
