@@ -41,69 +41,8 @@
             </div>
           </div>
 
-          <form class="mt-10 lg:border-y">
-            <div class="mt-8">
-              <div class="flow-root">
-                <ul role="list" class="-my-6 divide-y divide-gray-200">
-                  <li class="flex py-6">
-                    <div class="flex flex-1 flex-col">
-                      <div class="flex flex-1 items-end justify-between text-sm">
-                        <div class="lg:border-y rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
-                          <label for="checkin" class="block text-xs font-medium text-gray-900">Check in</label>
-                          <v-date-picker v-model="checkinDate">
-                            <template v-slot="{ inputValue, inputEvents }">
-                              <input
-                                class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
-                                :value="inputValue"
-                                v-on="inputEvents"
-                              />
-                            </template>
-                          </v-date-picker>
-                        </div>
-                        <div class="lg:border-y rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
-                          <label for="name" class="block text-xs font-medium text-gray-900">Check out</label>
-                           <v-date-picker v-model="checkoutDate">
-                            <template v-slot="{ inputValue, inputEvents }">
-                              <input
-                                class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
-                                :value="inputValue"
-                                v-on="inputEvents"
-                              />
-                            </template>
-                          </v-date-picker>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
+          <ReservationForm :accommodation="accommodation"></ReservationForm>
 
-                   <li class="flex py-6">
-                    <div class="ml-4 flex flex-1 flex-col">
-                      <div>
-                        <div class="flex justify-between text-base font-medium text-gray-900">
-                          <p>{{ accommodation.name }}</p>
-                          <p class="ml-4">${{ accommodation.price_cents }}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="flex py-6">
-                    <div class="ml-4 flex flex-1 flex-col">
-                      <div>
-                        <div class="flex justify-between text-base font-medium text-gray-900">
-                          <p>{{ accommodation.name }}</p>
-                          <p class="ml-4">${{ accommodation.price_cents }}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-
-            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Reserve</button>
-          </form>
         </div>
 
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
@@ -126,6 +65,7 @@ import { ref, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import ReservationForm from './reservationForm.vue'
 
 export default {
   components: {
@@ -133,16 +73,12 @@ export default {
     Slide,
     Pagination,
     Navigation,
+    ReservationForm,
   },
   setup() {
     const reviews = { href: '#', average: 4, totalCount: 117 }
     const route = useRoute();
     const state = reactive({ accommodation: {} });
-
-    const checkinDate = ref(new Date())
-    const checkoutDate = ref(new Date())
-    console.log('checkinDate', checkinDate)
-    console.log('checkoutDate', checkoutDate)
 
     axios
       .get("/api/accommodations/" + route.params.id + ".json", {
@@ -155,7 +91,7 @@ export default {
         console.log("detail page accommodation", response.data);
       });
     const { accommodation } = toRefs(state);
-    return { accommodation, checkinDate, checkoutDate, reviews };
+    return { accommodation, reviews };
   },
 };
 </script>

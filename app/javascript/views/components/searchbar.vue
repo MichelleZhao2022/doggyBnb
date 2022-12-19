@@ -1,6 +1,6 @@
 <template lang="">
   <div class="container mx-auto py-8">
-    <form @submit="search">
+    <form @submit.prevent="search">
       <label for="city" class="block text-sm font-medium text-gray-700"
         >Search Accommodation</label
       >
@@ -56,8 +56,7 @@ import AccommodationIndex from "../api/accommodation/index.vue";
 const state = reactive({ accommodations: {} });
 const city = ref("");
 
-const search = (e) => {
-  e.preventDefault();
+const search = () => {
   axios("/api/search/" + city.value + ".json", {
     header: {
       ACCEPT: "application/json",

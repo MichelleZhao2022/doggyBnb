@@ -8,7 +8,8 @@ module Api
         @reservation = @accommodation.reservations.new
 
         if @reservation.save
-          redirect_to root_path
+          binding.pry
+          redirect_to api_accommodations_path
         end
       end
 
