@@ -21,8 +21,4 @@ class PagesController < ApplicationController
       end
     end
   end
-
-  def show
-    @accommodations = Accommodation.find(params[:id])
-  end
 end
