@@ -10,8 +10,12 @@ class Accommodation < ApplicationRecord
   has_many :reservations, dependent: :destroy
 
   scope :city, ->(city) { where("lower(city) like ?", "%#{city.downcase}%")}
+  enum :dog_size, [:small, :medium, :large]
+  enum :room_type, [:single, :shared]
+  enum :extra_care, [:daily_walk, :daily_play, :groom]
 
   def default_image
     images.first
   end
+
 end
