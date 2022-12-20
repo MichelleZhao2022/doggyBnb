@@ -5,18 +5,34 @@ module Api
     class ReservationsController < ApplicationController
       def new
         @accommodation = Accommodation.find(params[:accommodation_id])
-        @reservation = @accommodation.reservations.new
+        @reservation = @accommodation.reservations.new(new_reservation_params)
 
-        if @reservation.save
-          binding.pry
-          redirect_to api_accommodations_path
+        respond_to do |format|
+          if @reservation.save
+            format.html { redirect_to api_accommodation_reservations_path, notice: "Comment was successfully created." }
+          else
+            format.json do
+              render json: { error: e.message }.to_json, status: 404
+            end
+          end
+        end
+      end
+
+      def index
+        @accommodation = Accommodation.find(params[:accommodation_id])
+        @reservation = @accommodation.reservations
+        respond_to do |format|
+          format.html
+          format.json do
+            render json: @reservation.as_json
+          end
         end
       end
 
       private
 
       def new_reservation_params
-        params.permit(:checkin_date, :checkout_date, :subtotal, :total)
+        params.require(:reservation).permit(:checkin_date, :checkout_date, :subtotal, :total)
       end
 
     end
