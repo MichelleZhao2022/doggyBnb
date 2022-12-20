@@ -51,7 +51,7 @@
 <script setup>
 import axios from "axios";
 import { ref, reactive, toRefs } from "vue";
-import AccommodationIndex from "../api/accommodation/index.vue";
+import AccommodationIndex from "../accommodation/index.vue";
 
 const state = reactive({ accommodations: {} });
 const city = ref("");

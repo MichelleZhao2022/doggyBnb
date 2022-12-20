@@ -8,9 +8,14 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   namespace :api do
-    resources :accommodations do
-      resources :reservations, only: [:new, :index], controller: "accommodations/reservations"
-    end
+    resources :accommodations
     # resources :search, only: :index
   end
+
+
+  # resources :accommodations do
+  #   resources :reservations, only: [:new, :index], controller: "accommodations/reservations"
+  # end
+
+  get '/*path', to: 'application#index', format: false
 end

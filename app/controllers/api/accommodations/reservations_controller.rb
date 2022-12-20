@@ -7,13 +7,11 @@ module Api
         @accommodation = Accommodation.find(params[:accommodation_id])
         @reservation = @accommodation.reservations.new(new_reservation_params)
 
-        respond_to do |format|
-          if @reservation.save
-            format.html { redirect_to api_accommodation_reservations_path, notice: "Comment was successfully created." }
-          else
-            format.json do
-              render json: { error: e.message }.to_json, status: 404
-            end
+        if @reservation.save
+          # redirect_to accommodation_reservations_path, notice: "Reservation was successfully created." 
+        else
+          format.json do
+            render json: { error: e.message }.to_json, status: 404
           end
         end
       end

@@ -1,5 +1,5 @@
 <template lang="">
-  <form @submit="confirmOrder" class="mt-6">
+  <form @submit.prevent="confirmOrder" class="mt-6">
     <div class="mt-8 flow-root">
       <ul class="-my-6 divide-gray-200">
         <div class="py-2 flex-1 flex-col">

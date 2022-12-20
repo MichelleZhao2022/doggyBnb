@@ -16,7 +16,7 @@
         </div>
         <router-link
           :to="{
-            name: 'api_accommodation_path',
+            name: 'accommodation_path',
             params: { id: accommodation.id },
           }"
           >{{ accommodation.name }}</router-link

@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "../views/App.vue";
 import Router from '../plugins/router';
-import AccommodationIndex from "../views/api/accommodation/index.vue";
+import AccommodationIndex from "../views/accommodation/index.vue";
 import SearchBar from "../views/components/SearchBar.vue";
 import 'v-calendar/dist/style.css';
 import VCalendar from 'v-calendar';

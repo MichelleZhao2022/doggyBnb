@@ -6,7 +6,7 @@ RSpec.describe 'Api::Accommodations', type: :request do
   describe 'GET /index' do
     # let!(:accommodations) { create_list(:accommodation, 2) }
     it 'returns http success' do
-      get api_accommodations_path
+      get accommodations_path
       expect(response).to have_http_status(:success)
     end
   end
@@ -14,7 +14,7 @@ RSpec.describe 'Api::Accommodations', type: :request do
   describe 'GET /show' do
     let(:accommodation) { create(:accommodation) }
     it 'returns http success' do
-      get api_accommodation_path(accommodation)
+      get accommodation_path(accommodation)
       expect(response).to have_http_status(:success)
     end
   end
