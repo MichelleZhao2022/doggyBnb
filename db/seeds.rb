@@ -9,8 +9,8 @@
     price_cents: Money.from_amount((1..100).to_a.sample)
   )
 
-  3.times do |x|
-  accommodation.images.attach(io: File.open(Rails.root.join('db', 'sample', 'images', "accommodation_#{i + 1 + x}.png")),
+  3.times do
+  accommodation.images.attach(io: File.open(Rails.root.join('db', 'sample', 'images', "accommodation_#{i + 1}.png")),
                               filename: accommodation.name)
   end
 end

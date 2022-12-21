@@ -63,7 +63,7 @@ const search = () => {
     },
   }).then((response) => {
     state.accommodations = response.data;
-    console.log("response.data", response.data);
+    console.log("search response.data", response.data);
   });
 };
 const { accommodations } = toRefs(state);
